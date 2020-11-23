@@ -13,7 +13,9 @@ jobs:
         env:
           cache-name: cache-pub-modules
         with:
-          path: $PWD/.pub_cache/
+          path: |
+            $PWD/.pub_cache/
+            .packages
           key: ${{ runner.os }}-build-${{ env.cache-name }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}
