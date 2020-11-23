@@ -2,12 +2,13 @@ name: Build web and deploy on master branch
 
 on:
   push:
-    branches: [ master, dev ]
+    branches: [ master, main, dev ]
   pull_request:
-    branches: [ master, dev ]
+    branches: [ master, main, dev ]
 
 jobs:
   build:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -39,10 +40,10 @@ jobs:
         run: flutter config --enable-web
       - name: Build web
         run: flutter build web --release
-     - name: Upload build result for job build_web
+      - name: Upload build result for job build_web
         uses: actions/upload-artifact@v2
         with:
-          name: web
+          name: test
           path: |
             build/web/
             coverage/
