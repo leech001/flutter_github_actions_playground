@@ -38,7 +38,9 @@ jobs:
         env:
           cache-name: cache-pub-modules
         with:
-          path: $PWD/.pub_cache/
+          path: |
+            $PWD/.pub_cache/
+            .packages
           key: ${{ runner.os }}-build-${{ env.cache-name }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}
@@ -47,7 +49,7 @@ jobs:
       - name: Upload coverage
         uses: actions/upload-artifact@v2
         with:
-          name: web
+          name: tests
           path: |
             coverage/
    
@@ -62,7 +64,9 @@ jobs:
         env:
           cache-name: cache-pub-modules
         with:
-          path: $PWD/.pub_cache/
+          path: |
+            $PWD/.pub_cache/
+            .packages
           key: ${{ runner.os }}-build-${{ env.cache-name }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}
@@ -71,7 +75,7 @@ jobs:
       - name: Upload analyze result
         uses: actions/upload-artifact@v2
         with:
-          name: web
+          name: analyzer
           path: |
             analyze.txt
 
@@ -87,7 +91,9 @@ jobs:
         env:
           cache-name: cache-pub-modules
         with:
-          path: $PWD/.pub_cache/
+          path: |
+            $PWD/.pub_cache/
+            .packages
           key: ${{ runner.os }}-build-${{ env.cache-name }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}
