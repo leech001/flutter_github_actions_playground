@@ -1,6 +1,6 @@
 name: Build release
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
   prepare:
@@ -16,7 +16,7 @@ jobs:
           path: |
             $PWD/.pub_cache/
             .packages
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('.packages')
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('.packages') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}
       - run: export PUB_CACHE=$PWD/.pub_cache/
@@ -41,7 +41,7 @@ jobs:
           path: |
             $PWD/.pub_cache/
             .packages
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('.packages')
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('.packages') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}
       - run: export PUB_CACHE=$PWD/.pub_cache/
@@ -68,7 +68,7 @@ jobs:
           path: |
             $PWD/.pub_cache/
             .packages
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('.packages')
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('.packages') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}
       - run: export PUB_CACHE=$PWD/.pub_cache/
@@ -96,7 +96,7 @@ jobs:
           path: |
             $PWD/.pub_cache/
             .packages
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('.packages')
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('.packages') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}
       - run: export PUB_CACHE=$PWD/.pub_cache/
