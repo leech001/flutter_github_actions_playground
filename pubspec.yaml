@@ -1,0 +1,29 @@
+name: flutter_github_actions_playground
+description: Flutter github actions playground
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  platform_info: ^2.2.0
+  l: 2.0.0-dev.rm.max.lenght.feature
+  shared_preferences: '>=0.5.12+2 <2.0.0'
+  rxdart: ^0.24.1
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^1.10.0
+  build_web_compilers: ^2.11.0
+  build_test: ^1.2.1
+  pubspec_generator: ^2.1.1-dev
+
+flutter:
+  uses-material-design: true
