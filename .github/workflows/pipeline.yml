@@ -1,10 +1,6 @@
 name: Build release
 
-on:
-  push:
-    branches: [ master, main ]
-  pull_request:
-    branches: [ master, main ]
+on: [push, pull_request]
 
 jobs:
   prepare:
@@ -12,13 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Print Flutter SDK version
-        run: flutter --version
-      - run: export PUB_CACHE=$PWD/.pub_cache/
-      - name: Get dependencies
-        run: flutter pub get    
-      - name: Codegen
-        run: dart run build_runner build --delete-conflicting-outputs
       - name: Cache pub modules
         uses: actions/cache@v2
         env:
@@ -26,13 +15,31 @@ jobs:
         with:
           path: $PWD/.pub_cache/
           key: ${{ runner.os }}-build-${{ env.cache-name }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}
+      - name: Print Flutter SDK version
+        run: flutter --version
+      - run: export PUB_CACHE=$PWD/.pub_cache/
+      - name: Get dependencies
+        run: flutter pub get    
+      - name: Codegen
+        run: dart run build_runner build --delete-conflicting-outputs
         
   test:
     needs: [ prepare ]
     container: cirrusci/flutter:beta
     runs-on: ubuntu-latest    
     steps:
-      - uses: actions/checkout@v2      
+      - uses: actions/checkout@v2
+      - name: Cache pub modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-pub-modules
+        with:
+          path: $PWD/.pub_cache/
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}
       - name: Run tests
         run: flutter test --no-pub --concurrency=6 --platform tester --coverage test/
       - name: Upload coverage
@@ -48,6 +55,15 @@ jobs:
     runs-on: ubuntu-latest    
     steps:
       - uses: actions/checkout@v2
+      - name: Cache pub modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-pub-modules
+        with:
+          path: $PWD/.pub_cache/
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}
       - name: Check sources with analyzer
         run: flutter analyze --no-pub --congratulate --current-package --preamble --write=analyze.txt
       - name: Upload analyze result
@@ -59,10 +75,20 @@ jobs:
 
   build_web:
     needs: [ test, analyze ]
+    if: contains( github.ref, 'master')
     container: cirrusci/flutter:beta
     runs-on: ubuntu-latest    
     steps:
-      - uses: actions/checkout@v2    
+      - uses: actions/checkout@v2
+      - name: Cache pub modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-pub-modules
+        with:
+          path: $PWD/.pub_cache/
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}
       - name: Enable web
         run: flutter config --enable-web      
       - name: Build web
