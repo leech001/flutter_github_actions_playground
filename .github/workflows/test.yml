@@ -43,7 +43,7 @@ jobs:
       - name: Run tests
         run: flutter test --no-pub --concurrency=6 --platform tester --coverage test/
       - name: Post coverage comment
-        uses: romeovs/lcov-reporter-action@v0.2.17
+        uses: romeovs/lcov-reporter-action@v0.2.11
         with:
           github-token: ${{ secrets.COVERAGE_COMMENT }}
           lcov-file: ./coverage/lcov.info
