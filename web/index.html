@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--TITLE-->
+  <title>SAMPLE APP</title>
+
+  <!--META-->
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="keywords" content="Plague, Fox, PlugFox">
+  <meta name="description" content="Plague Fox sample app">
+  <meta name="author" content="PlugFox">
+  <!--
+  <meta flt-viewport="" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  -->
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="sample">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <!-- Favicon Generator. For real. https://realfavicongenerator.net -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <!-- Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- STYLE -->
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #FFF;
+      overflow: hidden;
+    }
+    .noscript-center {
+      position: absolute;
+      text-align: center;
+      margin: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3vw;
+    }
+  </style>
+
+  <!-- SCRIPTS -->
+</head>
+<body>
+  <!-- NOSCRIPT -->
+  <noscript class='noscript-center'>Your browser does not support JavaScript!</noscript>
+
+  <!-- TODO: ADD LOADING SPINNER -->
+
+  <!-- PWA -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('flutter_service_worker.js');
+      });
+    }
+  </script>
+
+  <!-- APP -->
+  <script src="main.dart.js" type="application/javascript"></script>
+
+  <!-- ON LOADED -->
+  <script>
+    //<!--
+    document.addEventListener('DOMContentLoaded', function() {
+      try {
+        console.log('DOM content loaded');
+      } catch (e) {
+        console.error(e);
+      }
+    });
+    //-->
+  </script>
+</body>
+</html>
