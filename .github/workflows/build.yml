@@ -1,4 +1,5 @@
-name: Build web and deploy on master branch
+# Build web and deploy on master branch
+name: build
 
 on:
   push:

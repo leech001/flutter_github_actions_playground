@@ -1,4 +1,5 @@
-name: Check common feature branch without build
+# Check common feature branch without build
+name: test
 
 on:
   push:
