@@ -26,10 +26,7 @@ jobs:
         with:
           path: |
             $PWD/.pub_cache/
-          key: ${{ runner.os }}-test-${{ env.cache-name }}-${{ hashFiles('.packages') }}
-          restore-keys: |
-            ${{ runner.os }}-test-${{ env.cache-name }}-
-            ${{ runner.os }}-test-${{ env.cache-name }}
+          key: ${{ runner.os }}-flutter
       - uses: subosito/flutter-action@v1.4.0
         with:
           channel: beta
